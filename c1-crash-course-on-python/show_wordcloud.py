@@ -2,10 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import wordcloud
-#import numpy as np
 from matplotlib import pyplot as plt
-#from IPython.display import display
-#import io
 import sys
 
 
@@ -17,6 +14,7 @@ def get_file_contents(filename):
 
 
 
+#Task is: 
 #Write a function that iterates through the words in file_contents, 
 #removes punctuation, and counts the frequency of each word. 
 #Oh, and be sure to make it ignore word case, 
@@ -24,7 +22,6 @@ def get_file_contents(filename):
 #and boring words like "and" or "the". 
 #Then use it in the generate_from_frequencies function 
 #to generate your very own word cloud!
-#
 #Hint: Try storing the results of your iteration in a dictionary 
 #before passing them into wordcloud via the generate_from_frequencies function.
 
