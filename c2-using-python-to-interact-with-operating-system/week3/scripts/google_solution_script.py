@@ -35,6 +35,8 @@ def main():
     
     with open(csv_file_location, 'r') as f:
         user_data_list = list(csv.reader(f))
+        print("INITIAL user_data_list:")
+        print(user_data_list)
         user_email_list = [data[1].strip() for data in user_data_list[1:]]
         
         for email_address in user_email_list:
@@ -48,8 +50,8 @@ def main():
         
         for user in user_data_list[1:]:
             for old_domain, new_domain in zip(old_domain_email_list, new_domain_email_list):
-                if user[email_index] == '' + old_domain:
-                    user[email_index] = '' + new_domain
+                if user[email_index] == ' ' + old_domain:
+                    user[email_index] = ' ' + new_domain
     f.close()
     
     with open (report_file, 'w+') as output_file:
@@ -57,5 +59,8 @@ def main():
         writer.writerows(user_data_list)
         output_file.close()
 
+    print('FINAL user_data_list:')
+    print(user_data_list)
+    
 
 main()
