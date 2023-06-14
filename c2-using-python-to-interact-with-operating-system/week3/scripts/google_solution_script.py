@@ -49,18 +49,15 @@ def main():
         email_index = user_data_list[0].index(email_key)
         
         for user in user_data_list[1:]:
-            for old_domain, new_domain in zip(old_domain_email_list, new_domain_email_list):
-                if user[email_index] == ' ' + old_domain:
-                    user[email_index] = ' ' + new_domain
+            for old_domain_email, new_domain_email in zip(old_domain_email_list, new_domain_email_list):
+                if user[email_index] == ' ' + old_domain_email:
+                    user[email_index] = ' ' + new_domain_email
     f.close()
     
     with open (report_file, 'w+') as output_file:
         writer = csv.writer(output_file)
         writer.writerows(user_data_list)
         output_file.close()
-
-    print('FINAL user_data_list:')
-    print(user_data_list)
     
 
 main()
