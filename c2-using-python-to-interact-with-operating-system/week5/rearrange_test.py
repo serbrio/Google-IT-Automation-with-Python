@@ -6,7 +6,7 @@ import os
 
 class TestRearrange(unittest.TestCase):
     def setUp(self):
-        self.temp_file_name = "testing_file_open_for_write"
+        self.temp_file_name = "testing_temp_file"
         self.f = open(self.temp_file_name, 'w')
     def test_basic(self):
         testcase = "Lovegod, Luna"
