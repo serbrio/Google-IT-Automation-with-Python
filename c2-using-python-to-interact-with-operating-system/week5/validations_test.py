@@ -19,7 +19,9 @@ class TestValidateUser(unittest.TestCase):
         
     def test_invalid_type(self):
         self.assertRaises(TypeError, validate_user, [], 3)
-        
+        #try to run the script with -O parameter to ommit
+        #the assertions in the tested code 
+        #(in validations.py)
     
 if __name__ == "__main__":
     unittest.main()
