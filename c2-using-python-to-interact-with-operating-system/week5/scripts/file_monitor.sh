@@ -1,5 +1,6 @@
 #!/bin/bash
-FILE=./testing_temp_file
+FILE=$1
+echo Wating for file: $1
 n=0
 while [ $n -eq 0 ]; do
 	if [ -e $FILE ]
