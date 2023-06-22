@@ -10,6 +10,9 @@ class TestFindBook(unittest.TestCase):
     def test_not_found(self):
         self.assertEqual(find_book('Nosuchbookexists'), [])
 
+    def test_empty(self):
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()
