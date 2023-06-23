@@ -5,7 +5,7 @@ from books import find_book
 
 class TestFindBook(unittest.TestCase):
     def test_basic(self):
-        self.assertEqual(find_book('Момо'), [('available', 'not read', 'Энде (Момо)')])
+        self.assertEqual(find_book('Момо'), [('[available]', '[not read]', 'Энде (Момо)')])
 
     def test_not_found(self):
         self.assertEqual(find_book('Nosuchbookexists'), [])
