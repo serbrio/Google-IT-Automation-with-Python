@@ -3,6 +3,7 @@
 import unittest
 from books import find_book
 from books import get_keyword
+from books import represent_found
 
 class TestFindBook(unittest.TestCase):
     def test_basic(self):
@@ -26,7 +27,15 @@ class TestGetKeyword(unittest.TestCase):
         self.assertEqual(get_keyword([None, ""]), None)
 
     def test_no_arguments(self):
-        self.assertEqaul(get_keyword(["script.py"]), None)
+        self.assertEqual(get_keyword(["script.py"]), None)
+
+
+class TestRepresentFound(unittest.TestCase):
+    def test_none(self):
+        self.assertEqual(represent_found(None), "missing keyword")
+
+    def test_empty_found_list(self):
+        self.assertEqual(represent_found([]), "not found")
 
 
 if __name__ == "__main__":
