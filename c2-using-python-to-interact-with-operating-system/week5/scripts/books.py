@@ -19,10 +19,8 @@ def populate_dictionary(filename):
 
 def find_book(keyword):
     """Return info about all books containing the given keyword"""
-    if type(keyword) != str:
-        raise TypeError("wrong data type: keyword must be a string")
-    if len(keyword.strip()) == 0:
-        return []
+    if keyword is None:
+        return None
     books_dict = populate_dictionary("../data/Available and desirable_dtsk.csv")
     found_books = []
     for book_name in books_dict.keys():
@@ -33,25 +31,33 @@ def find_book(keyword):
     return found_books
 
 
-def print_found():
-    """Print nicely found books"""
+def get_keyword(argv):
     keywords = []
-    try:
-        for i in range(1, len(sys.argv)):
-            keywords.append(str(sys.argv[i]))
+    for i in range(1, len(argv)):
+        if str(argv[i].strip()):
+                keywords.append(str(argv[i]).strip())
+    if len(keywords) == 0:
+        return None
+    else:
         keyword = " ".join(keywords).strip()
-        found_books = find_book(keyword)
-        if len(found_books) == 0:
-            return "not found"
-        else:
-            repr_found = []
-            for if_available, if_read, book_name in found_books:
-                repr_book = "{:<15} {:<22} {}".format(if_available, if_read, book_name)
-                repr_found.append(repr_book)
-            return '\n'.join(repr_found)
-    except IndexError:
-        return "Missing keyword"
+        return keyword
+
+
+def represent_found(found_books):
+    """Print nicely found books"""
+    if found_books is None:
+        return "missing keyword"
+    elif found_books == []:
+        return "not found"
+    else:
+        repr_found = []
+        for if_available, if_read, book_name in found_books:
+            repr_book = "{:<15} {:<22} {}".format(if_available, if_read, book_name)
+            repr_found.append(repr_book)
+        return '\n'.join(repr_found)
 
 
 if __name__ == "__main__":
-    print(print_found())
+    keyword = get_keyword(sys.argv)
+    found_books = find_book(keyword)
+    print(represent_found(found_books))
