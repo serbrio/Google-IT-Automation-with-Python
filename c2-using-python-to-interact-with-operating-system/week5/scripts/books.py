@@ -21,6 +21,8 @@ def find_book(keyword):
     """Return info about all books containing the given keyword"""
     if keyword is None:
         return None
+    if type(keyword) != str:
+        raise TypeError("keyword must be a string")
     books_dict = populate_dictionary("../data/Available and desirable_dtsk.csv")
     found_books = []
     for book_name in books_dict.keys():
@@ -33,6 +35,8 @@ def find_book(keyword):
 
 def get_keyword(argv):
     keywords = []
+    if len(argv) == 1:
+        return None
     for i in range(1, len(argv)):
         if str(argv[i].strip()):
                 keywords.append(str(argv[i]).strip())
