@@ -19,7 +19,8 @@ def populate_dictionary(filename):
 
 def find_book(keyword):
     """Return info about all books containing the given keyword"""
-    assert type(keyword) == str, "keyword must be a string"
+    if type(keyword) != str:
+        raise TypeError("wrong data type: keyword must be a string")
     if len(keyword.strip()) == 0:
         return []
     books_dict = populate_dictionary("../data/Available and desirable_dtsk.csv")
