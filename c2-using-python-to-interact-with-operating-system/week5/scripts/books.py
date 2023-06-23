@@ -19,6 +19,8 @@ def populate_dictionary(filename):
 
 def find_book(keyword):
     """Return info about all books containing the given keyword"""
+    if len(keyword.strip()) == 0:
+        return []
     books_dict = populate_dictionary("../data/Available and desirable_dtsk.csv")
     found_books = []
     for key in books_dict.keys():
