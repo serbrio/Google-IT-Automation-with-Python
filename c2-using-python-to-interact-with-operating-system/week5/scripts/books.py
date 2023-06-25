@@ -23,7 +23,7 @@ def find_book(keyword):
         return None
     if type(keyword) != str:
         raise TypeError("keyword must be a string")
-    books_dict = populate_dictionary("../data/Available and desirable_dtsk.csv")
+    books_dict = populate_dictionary("../data/Avlbl_dsrbl_RU.csv")
     found_books = []
     for book_name in books_dict.keys():
         if keyword.lower() in book_name.lower():
@@ -62,6 +62,17 @@ def represent_found(found_books):
 
 
 if __name__ == "__main__":
-    keyword = get_keyword(sys.argv)
-    found_books = find_book(keyword)
-    print(represent_found(found_books))
+    while True:
+        try:
+            print("Enter <CTRL C> to quit")
+            #csv_file = input('Enter path to csv file: ')
+            keyword_input = input('Enter key words: ')
+            keyword = get_keyword([None, keyword_input])
+            found_books = find_book(keyword)
+            print(represent_found(found_books))
+        except KeyboardInterrupt:
+            print('Quit: interrupted by user')
+            raise
+    #keyword = get_keyword(sys.argv)
+    #found_books = find_book(keyword)
+    #print(represent_found(found_books))
