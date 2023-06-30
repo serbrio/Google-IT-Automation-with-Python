@@ -24,12 +24,12 @@ echo "Enter digits without spaces. Example: 12345"
 
 code=$( shuf -e 1 2 3 4 5 6 7 8 | head -n 5 | tr -d '[:space:]' )
 counter=1
-echo Code: $code ##
+#echo Code: $code ##
 
 while [ $counter -le  8 ]
 do
 	echo 
-	echo Try No: $counter
+	echo Attempt No: $counter
 	read -p "Enter: " guess
 
 	# check length(guess) == 5
@@ -73,8 +73,8 @@ do
 		fi
 	done
 
-	echo Guessed digits: $guessed_digits
-	echo On correct places: $correct_order
+	#echo Guessed digits: $guessed_digits
+	#echo On correct places: $correct_order
 	
 	c_signs=${correct_order}
 	g_signs=$(( $guessed_digits - $correct_order ))
