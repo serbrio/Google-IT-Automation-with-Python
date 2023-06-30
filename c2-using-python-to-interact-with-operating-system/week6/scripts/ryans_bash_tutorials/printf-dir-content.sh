@@ -7,13 +7,13 @@
 
 for item in $1/*
 do
-	if [ -d $item ]
+	if [ -d "$item" ]
 	then
-		items_count=$( ls $item | wc -l )
-		printf '%-6s %s\n' "$items_count" "$item/"
-	elif [ -e $item ]
+		items_count=$( ls "$item" | wc -l )
+		printf '%-6s %s\n' "$items_count" "$item"
+	elif [ -e "$item" ]
 	then
-		file_size=$( du -h $item | awk '{ print $1 }' )
+		file_size=$( du -h "$item" | awk '{ print $1 }' )
 		printf '%-6s %s\n' "$file_size" "$item"
 	fi
 done
