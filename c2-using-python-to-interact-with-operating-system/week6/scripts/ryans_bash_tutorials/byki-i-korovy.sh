@@ -33,10 +33,11 @@ do
 	read -p "Enter: " guess
 
 	# check length(guess) == 5
-	if [ ${#guess} != 5 ]
+	# and check guess is digits from 1 to 8
+	if [ ! "$( echo $guess | grep '^[1-8]\{5\}$' )"  ]
 	then
 		echo 
-		echo "! Please enter 5 digits"
+		echo "! Please enter 5 digits from 1 to 8"
 		continue
 	fi
 
