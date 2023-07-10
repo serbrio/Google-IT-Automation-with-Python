@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import unittest
 from err_stat2csv import rank_errors, sort_users_stat
