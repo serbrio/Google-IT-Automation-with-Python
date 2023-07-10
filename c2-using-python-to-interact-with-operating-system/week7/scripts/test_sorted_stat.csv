@@ -1,0 +1,9 @@
+admin,ERROR:1
+arch_user,ERROR:2,INFO:1
+bad_user,ERROR:2
+buddhist,INFO:1
+debian_root,ERROR:1
+info_user,INFO:1
+little_user,ERROR:2
+macoser,INFO:1
+new_user,ERROR:1

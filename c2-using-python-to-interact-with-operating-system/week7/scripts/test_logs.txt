@@ -1,0 +1,33 @@
+Jul 10 19:25:01 marias CRON[2055]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 19:35:01 marias CRON[2072]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 19:45:01 marias CRON[2088]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 19:55:01 marias CRON[2105]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 20:04:09 marias systemd[1]: Started Run anacron jobs.
+Jul 10 20:04:09 marias anacron[2119]: Anacron 2.3 started on 2023-07-10
+Jul 10 20:04:09 marias anacron[2119]: Normal exit (0 jobs run)
+Jul 10 20:05:01 marias CRON[2123]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 20:10:15 marias systemd[1]: Started Session 24 of user serbrio.
+Jul 10 20:10:59 marias kernel: [10946.771568] perf: interrupt took too long (3958 > 3930), lowering kernel.perf_event_max_sample_rate to 50500
+May 27 11:55:40 ubuntu.local ticky: ERROR: Something failed (or broken) absolutely (bad_user)
+Feb 10 09:33:13 ubuntu.remote ticky: ERROR: Little thing broken (asta la vista!) (little_user)
+Jan 24 15:14:24 archlinux ticky: ERROR: Something failed (or broken) absolutely (arch_user)
+May 13 02:21:22 zenwalk ticky: INFO: Everything fine  [#21111] (buddhist)
+Jun 23 22:34:36 arch ticky: INFO: Everything fine  [#33333] (arch_user)
+May 13 12:44:32 macos ticky: INFO: Everything fine  [#55555] (macoser)
+Jul 18 23:04:43 debian ticky: ERROR: Browser failed again (debian_root)
+Sep 9 06:01:02 windows ticky: ERROR: Browser failed again (admin)
+May 13 12:44:32 ubuntu ticky: INFO: Everything fine  [#12345] (info_user)
+Jan 24 15:14:24 archlinux ticky: ERROR: Something failed absolutely (arch_user)
+Feb 10 09:33:13 ubuntu.remote ticky: ERROR: Little thing broken (little_user)
+May 27 11:55:40 ubuntu.local ticky: ERROR: Something failed absolutely (bad_user)
+Jul 10 00:06:55 marias rsyslogd:  [origin software="rsyslogd" swVersion="8.32.0" x-pid="731" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
+Jul 10 00:07:23 marias anacron[3209]: Job `cron.daily' terminated
+Jul 10 00:11:53 marias anacron[3209]: Job `cron.weekly' started
+Jul 10 00:11:54 marias anacron[3313]: Updated timestamp for job `cron.weekly' to 2023-07-10
+Jul 10 00:11:56 marias anacron[3209]: Job `cron.weekly' terminated
+Jul 10 00:11:56 marias anacron[3209]: Normal exit (2 jobs run)
+Jul 10 00:15:01 marias CRON[3328]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 00:17:01 marias CRON[3334]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jul 10 00:25:01 marias CRON[3347]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jul 10 00:35:01 marias CRON[3364]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Oct 11 11:11:11 figindows ticky: ERROR: Browser failed again (new_user)
