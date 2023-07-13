@@ -27,6 +27,7 @@ def rank_errors(logs):
         else:
             d[result[1]] = 1
     ranked_errors = sorted(d.items(), key=lambda item: item[1], reverse=True)
+    ranked_errors.insert(0, ("Error", "Amount"))
     return ranked_errors
     
     
@@ -40,12 +41,11 @@ def sort_users_stat(logs):
         result = re.search(r"^.+ (INFO|ERROR): .+ \((\w+)\)$", log)
         if result is None:
             pass
-        elif result[2] in d and result[1] not in d[result[2]]:
-            d[result[2]][result[1]] = 1
-        elif result[2] in d and result[1] in d[result[2]]:
+        elif result[2] in d:
             d[result[2]][result[1]] += 1
         else:
-            d[result[2]] = {result[1]: 1}
+            second_message = "INFO" if result[1] == "ERROR" else "ERROR"
+            d[result[2]] = {result[1]: 1, second_message: 0}
     sorted_stat = sorted(d.items())
     #sortd = dict(sorted(d.items()))
     result = []
@@ -55,6 +55,7 @@ def sort_users_stat(logs):
             info = "{}:{}".format(key, stat[1][key])
             one.append(info)
         result.append(one)
+    result.insert(0, ("Username", "Errors", "Infos"))
     return result
     #return sortd
   
