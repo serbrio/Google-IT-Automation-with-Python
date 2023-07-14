@@ -20,7 +20,7 @@ def rank_errors(logs):
     error: {"ERROR": error, "OCCURED": n}"""
     d = {}
     for log in logs:
-        result = re.search(r"^.+ ERROR: (.+) \(\w+\)$", log)
+        result = re.search(r"^.+ ERROR:? (.+) \(\w+\)$", log)
         if result is None:
             pass
         elif result[1] in d:
@@ -28,6 +28,10 @@ def rank_errors(logs):
         else:
             d[result[1]] = {"ERROR": result[1], "OCCURED": 1}
     ranked_errors = sorted(d.items(), key=lambda item: item[1]["OCCURED"], reverse=True)
+    #alternative to lambda: 
+    #import operator
+    #key=operator.itemgetter(1)
+    #ranked_errors.insert(0, ("ERROR", "OCCURED"))
     return dict(ranked_errors)
     
     
@@ -38,7 +42,7 @@ def sort_users_stat(logs):
     """
     d = {}
     for log in logs:
-        result = re.search(r"^.+ (INFO|ERROR): .+ \((\w+)\)$", log)
+        result = re.search(r"^.+ (INFO|ERROR):? .+ \((\w+)\)$", log)
         try:
             msg, username = result.groups()
         except AttributeError:
