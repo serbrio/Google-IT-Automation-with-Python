@@ -67,8 +67,8 @@ if __name__ == "__main__":
     while True:
         try:
             print("Enter <CTRL C> to quit")
-            #csv_file = input('Enter path to csv file: ')
-            csv_file = "../data/Avlbl_dsrbl_RU.csv"
+            csv_file = input('Enter path to csv file: ')
+            #csv_file = "../data/Avlbl_dsrbl_RU.csv"
             keyword_input = input('Enter key words: ')
             keyword = get_keyword([None, keyword_input])
             found_books = find_book(keyword, csv_file)
