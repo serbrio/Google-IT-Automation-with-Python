@@ -4,10 +4,11 @@ import csv
 import sys
 
 
-def populate_dictionary(filename):
-    """Populate dictionary with Available/Read/Author(book)"""
+def populate_dictionary(csv_file):
+    """Function takes csv_file, populates dictionary with 
+    Author(book): ["available"|"not available", "read"|"not read"]."""
     books_dict = {}
-    with open(filename, encoding='utf-8') as csvfile:
+    with open(csv_file, encoding='utf-8') as csvfile:
         lines = csv.reader(csvfile, delimiter = ',')
         for row in list(lines)[3:]:
             book = str(row[2])
@@ -17,13 +18,14 @@ def populate_dictionary(filename):
     return books_dict
 
 
-def find_book(keyword):
-    """Return info about all books containing the given keyword"""
+def find_book(keyword, csv_file):
+    """Return info about all books containing the given keyword 
+    in the given csv_file."""
     if keyword is None:
         return None
     if type(keyword) != str:
         raise TypeError("keyword must be a string")
-    books_dict = populate_dictionary("../data/Avlbl_dsrbl_RU.csv")
+    books_dict = populate_dictionary(csv_file)
     found_books = []
     for book_name in books_dict.keys():
         if keyword.lower() in book_name.lower():
@@ -66,9 +68,10 @@ if __name__ == "__main__":
         try:
             print("Enter <CTRL C> to quit")
             #csv_file = input('Enter path to csv file: ')
+            csv_file = "../data/Avlbl_dsrbl_RU.csv"
             keyword_input = input('Enter key words: ')
             keyword = get_keyword([None, keyword_input])
-            found_books = find_book(keyword)
+            found_books = find_book(keyword, csv_file)
             print(represent_found(found_books))
         except KeyboardInterrupt:
             print('Quit: interrupted by user')
