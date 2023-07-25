@@ -1,0 +1,222 @@
+#%%
+"""
+Introduction to Git and GitHub, by Google
+
+WEEK 2 – Using Git Locally
+
+2.4 Qwiklabs Assessment: Merging Branches in Git
+
+In this lab, you'll use your knowledge of Git and Git commit history
+ to check out an existing repo and make some changes to it. 
+You'll also test what you learned about rolling back commits after bad changes,
+ in order to fix a script in the repo and run it to produce the correct output.
+
+What you'll do
+Check the status and history of an existing Git repo
+Create a branch
+Modify content on the branch
+Make rollback changes
+Merge the branch
+
+Contents
+1 - EXPLORE REPOSITORY
+2 - UNDERSTANDING THE REPOSITORY
+3 - ADD A NEW FEATURE
+4 - FIX THE SCRIPT
+5 - MERGE OPERATION
+"""
+#%%
+"""
+1 - EXPLORE REPOSITORY
+we have the Repository "food-scripts"
+it contains two Python scripts and 1 log file
+
+cd ~/food-scripts       # navigate to the Repository
+ls                      # list the files on the Repository (directory?)
+                        # favorite_foods.log, food_count.py, food_question.py
+cat favorite_foods.log  # display content of this file
+                        # contains a list of various foods
+cat food_count.py       # display content of this file
+                        # This script returns a list of each food and the number of times the food appeared in the favorite_foods.log file.
+./food_count.py         # run/execute this script
+                        # now we see each food with a number of appearances            
+
+cat food_question.py    # display content of this file 
+                        # This prints a list of foods and 
+                        prompts the user to enter one of those foods as their favorite. 
+                        It then returns an answer of how many others in the list like that same food.                   
+./food_question.py      # run/execute this script
+                        # this script does not work, ERROR!
+                        One of your colleagues reports that this script was working fine until the most recent commit. 
+                        We'll be fixing this error later during the lab.
+
+2 - UNDERSTANDING THE REPOSITORY
+Let's use the following Git operations to understand the workflow of the repository:
+    git status
+    git log
+    git branch
+
+git status
+            On branch master
+            nothing to commit, working tree clean
+
+git log, shows list of commits
+            commit 21cf376832fa6eace35c0bf9e4bae4a3400452e9
+            Author: Alex Cooper <alex_cooper@gmail.com>
+            Date:   Wed Jan 8 14:09:39 2020 +0530
+            
+                Rename item variable to food_item.
+            
+            commit b8d00e33237b24ea1480c363edd972cf4b49eedf
+            Author: Alex Cooper <alex_cooper@gmail.com>
+            Date:   Wed Jan 8 14:08:35 2020 +0530
+            
+                Added file food_question.py that returns how many others in the list like that same food.
+            
+            commit 8d5a3189b88d273ef08286e5074b5e38d616da21
+            Author: Alex Cooper <alex_cooper@gmail.com>
+            Date:   Wed Jan 8 14:07:15 2020 +0530
+            
+                Added file food_count.py that returns a list of each food and the number of times each food appears in favorite_foods.log file.
+            
+            commit 0a202e03e0356d2b5c323e51905d3d06e5e2d0ed
+            Author: Alex Cooper <alex_cooper@gmail.com>
+            Date:   Wed Jan 8 14:06:21 2020 +0530
+            
+                Added file favorite_foods.log that contains list of foods.
+
+AFTER git log Enter q to exit DOES NOT WORK
+
+git branch
+            * master
+
+git config user.name "foteinirodi"              # Replace Name with your name
+                        warning: user.name has multiple values
+                        error: cannot overwrite multiple values with a single value
+                               Use a regexp, --add or --replace-all to change user.name.
+
+git config user.email "user@example.com" # Replace user@example.com with your email
+
+3 - ADD A NEW FEATURE
+
+git branch improve-output       # create a branch named improve-output
+git checkout improve-output     # switch into this branch
+Switched to branch 'improve-output'
+
+nano food_count.py              # open the food_count.py to modify it
+                                Add the line below before printing for loop
+                                print("Favourite foods, from most popular to least popular")
+                                #!/usr/bin/env python3
+                                # Dictionary to keep track of food likes
+                                counter = {}
+                                
+                                # Open up the favorite foods log and add it to the dictionary
+                                with open("favorite_foods.log", "r") as f:
+                                    for i in f:
+                                        i = i[:-1]
+                                        if i not in counter:
+                                            counter[i] = 1
+                                        else:
+                                            counter[i] += 1
+                                
+                                # Sorts the liked foods in descending order
+                                sort_foods = sorted(counter.items(), key = lambda x : x[1], reverse = True)
+                                
+                                print("Favourite foods, from most popular to least popular")
+                                # Prints out the liked foods
+                                for i in range(len(sort_foods)):
+                                    
+                                    print("{}, {}".format(sort_foods[i][0], sort_foods[i][1]))
+
+CTRL-O, ENTER, CTRL-X
+./food_count.py                 # run the script 
+git add food_count.py           # add the modified file to the staging area (stage the modified file)
+git commit -m "Adding a line in the output describing the utility of food_count.py script"
+                                # commit the staged file
+                                [improve-output f3ab3a6] Adding a line in the output describing the utility of food_count.py script
+                                 1 file changed, 3 insertions(+), 1 deletion(-)
+
+Click Check my progress:)
+    
+4 - FIX THE SCRIPT
+
+./food_question.py             # this script has an error
+                               # we run the script to see the error
+This script gives us the error: "NameError: name 'item' is not defined" but 
+your colleague says that the file was running fine before the most recent commit they did.
+In this case, we'll revert back the previous commit.                              
+
+git log                        # shows list of commits
+                               #  see the commits in reverse chronological order
+                               # find the commit having "Rename item variable to food_item" as a commit message
+                               #  Make sure to note the commit ID for this particular commit.
+                               # Enter q to exit.
+                                commit f3ab3a668e46ba3639f97b1eb5232261b12bf4d2
+                                Author: FoteiniRodi <foteinirodis@gmail.com>
+                                Date:   Sat Nov 21 16:53:37 2020 +0000
+                                
+                                    Adding a line in the output describing the utility of food_count.py script
+                                
+                                commit 21cf376832fa6eace35c0bf9e4bae4a3400452e9
+                                Author: Alex Cooper <alex_cooper@gmail.com>
+                                Date:   Wed Jan 8 14:09:39 2020 +0530
+                                
+                                    Rename item variable to food_item.
+                                
+                                commit b8d00e33237b24ea1480c363edd972cf4b49eedf
+                                Author: Alex Cooper <alex_cooper@gmail.com>
+                                Date:   Wed Jan 8 14:08:35 2020 +0530
+                                
+                                    Added file food_question.py that returns how many others in the list like that same food.
+                                
+                                commit 8d5a3189b88d273ef08286e5074b5e38d616da21
+                                Author: Alex Cooper <alex_cooper@gmail.com>
+                                Date:   Wed Jan 8 14:07:15 2020 +0530
+                                
+                                    Added file food_count.py that returns a list of each food and the number of times each food appears in favorite_foods.log file.
+                                
+                                commit 0a202e03e0356d2b5c323e51905d3d06e5e2d0ed
+                                Author: Alex Cooper <alex_cooper@gmail.com>
+                                Date:   Wed Jan 8 14:06:21 2020 +0530
+                                
+                                    Added file favorite_foods.log that contains list of foods.
+                               
+git revert [commit-ID]         # I paste the commit ID from above
+                               # I will revert this commit
+                               # git revert will create a new commit to reverse the previous one
+                               # creates a new commit that is the inverse of the previous commit
+
+
+                                Revert "Rename item variable to food_item."
+                                
+                                This reverts commit 21cf376832fa6eace35c0bf9e4bae4a3400452e9.
+                                
+                                # Please enter the commit message for your changes. Lines starting
+                                # with '#' will be ignored, and an empty message aborts the commit.
+                                # On branch improve-output
+                                # Changes to be committed:
+                                #       modified:   food_question.py
+                                #
+This creates a new commit again. 
+You can continue with the default commit message on the screen or add your own commit message.
+
+CTRL-O, ENTER, CTRL-X
+
+./food_question.py             # run the script to see  if it runs correctly
+
+5 - MERGE OPERATION
+
+git checkout master             # before merging the branch "improve-output" into the Master branch,
+                                PLEASE SWITCH TO THE MASTER BRANCH
+git merge improve-output        # now merge it
+                                
+Now, all your changes made in the improve-output branch are on the master branch.
+
+./food_question.py              # run the script
+
+git status                     # working tree clean
+
+git log
+
+Click Check my progress 
+"""
