@@ -64,10 +64,11 @@ def represent_found(found_books):
 
 
 if __name__ == "__main__":
+    csv_file = sys.argv[1]
     while True:
         try:
             print("Enter <CTRL C> to quit")
-            csv_file = input('Enter path to csv file: ')
+            #csv_file = input('Enter path to csv file: ')
             #csv_file = "../data/Avlbl_dsrbl_RU.csv"
             keyword_input = input('Enter key words: ')
             keyword = get_keyword([None, keyword_input])
