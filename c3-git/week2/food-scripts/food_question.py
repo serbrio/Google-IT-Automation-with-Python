@@ -14,7 +14,7 @@ with open("favorite_foods.log", "r") as f:
 
 # Print out all the available liked foods
 print("Select your favorite food below:")
-for itm in counter:
+for item in counter:
     print(item)
 
 # Ask which food is the user's favorite
