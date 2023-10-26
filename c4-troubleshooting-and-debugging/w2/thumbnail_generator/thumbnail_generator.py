@@ -65,7 +65,7 @@ def main():
     if not os.path.exists('thumbnails'):
         os.mkdir('thumbnails')
 
-    executor = futures.ThreadPoolExecutor()
+    executor = futures.ProcessPoolExecutor()
     for root, _, files in os.walk('images'):
         for basename in progress_bar(files):
             if not basename.endswith('.jpg'):
