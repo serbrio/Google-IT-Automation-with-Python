@@ -34,7 +34,7 @@ def database_connection(name):
 
 def update_data(database, options):
 
-    with open(options.filename, 'r') as products: #TODO: ADD: encoding='utf-8-sig'
+    with open(options.filename, 'r', encoding='utf-8-sig') as products:
         reader = csv.DictReader(products)
         cursor = database.cursor()
         for row in reader:
