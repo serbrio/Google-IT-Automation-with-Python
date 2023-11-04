@@ -42,12 +42,17 @@ def process_options():
 
 
 def process_file(root, basename):
+    """Generates a thumbnail of the given image"""
+
+    # Open the image that we need to process
     filename = f'{root}/{basename}'
     image = PIL.Image.open(filename)
 
+    # Generate the thumbnail
     size = (128, 128)
     image.thumbnail(size)
 
+    # Store the thumbnail in the thumbnail folder
     new_name = f'thumbnails/{basename}'
     image.save(new_name, "JPEG")
     return new_name
