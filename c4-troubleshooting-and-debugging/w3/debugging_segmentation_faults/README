@@ -1,0 +1,34 @@
+Debugging Segmentation Faults
+
+
+Source:
+https://sites.google.com/a/case.edu/hpcc/hpc-cluster/ridermarkov-software/programming-computing-languages/cc/debugging-segmentation-faults
+
+
+
+=C=
+
+Compile with a 'g' (debug) flag:
+gcc -g –o debug hello.c  
+(Creates executable with the default name a.out)
+
+Generate assembly code: 
+gcc -S hello.c
+(Creates hello.s)
+
+To execute binary:
+./a.out
+
+
+
+=C++=
+
+Compile with a 'g' (debug) flag:
+g++ -g -o debug test.cpp
+
+
+
+=VALGRIND=
+
+Debug with valgrind:
+valgrind --tool=memcheck --leak-check=yes -v --leak-check=full --show-reachable=yes ./debug
